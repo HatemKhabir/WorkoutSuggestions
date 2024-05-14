@@ -1,6 +1,8 @@
 <script>
     import { Button } from 'flowbite-svelte';
     import Modal from '../components/Modal.svelte';
+	import ExerciseTemplate from '../components/ExerciseTemplate.svelte';
+  import {myExercises} from '../store/stores.js'
     const bodyParts = [
       'Pectorals Exercises',
       'Upper Back Exercises',
@@ -43,7 +45,8 @@
     try {
 	const response = await fetch(`${url}/${bodyPartName}?limit=10&offset=${offset}`, options).then((res)=>(res.json()));
   exercices = response;
-  exercices=[...exercices];
+  console.log(exercices)
+  
 } catch (error) {
 	console.error(error);
 }
@@ -60,11 +63,11 @@
       if (event.key === 'Enter' || event.key === ' ') {
         defaultModal = true;}}} 
     on:click={() => { defaultModal = true;
-      selectedPart=part
+      selectedPart=part;
+      exercices=[];
      }}
     aria-label="Open modal"
-    class="card">
-    
+    class="card">   
         <img src={bodyPartsImages[i]} alt={part}>
         <h1>{part}</h1>
       </div>
@@ -76,7 +79,7 @@
     </h3>
     <div slot="content">
      {#each exercices as exercice,i }
-     <h2>{exercice.name}</h2>      
+     <ExerciseTemplate imgSource={exercice.gifUrl} exerciceName={exercice.name}/>
      {/each}
     </div>
     <Button slot="button" on:click={()=>{fetchExercices(selectedPart.split(' E')[0].toLowerCase())}}>Fetch</Button>

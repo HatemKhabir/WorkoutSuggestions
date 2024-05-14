@@ -7,8 +7,9 @@
     <h1>Gym Exercices</h1>
    <ul>
     <ButtonGroup class=" justify-between">
-    <GradientButton color="redToYellow" class="h-full mr-1  hover:scale-125 hover:mr-2"><a href="/dashboard"> Home</a></GradientButton>
-    <GradientButton color="redToYellow" class="h-full  hover:scale-125 hover:ml-3"><a href="/exercices">Your Exercices</a></GradientButton>
+    <p class="mt-3 mr-6 text-xl text-transparent bg-clip-text transition-colors duration-1000 ease-in-out bg-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-200 hover:text-2xl"><a href="/dashboard"> Home</a></p>
+    <p class=" mr-2 mt-3 text-xl text-transparent bg-clip-text bg-white hover:bg-gradient-to-l to-pink-500 from-yellow-200   hover:text-2xl"><a href="/myexercices">Your Exercices</a></p>
+    <p class=" mr-2 ml-6 mt-4 text-l text-transparent bg-clip-text hover:mr-4 bg-black hover:font-extrabold hover:bg-gradient-to-l to-slate-800 from-stone-800  hover:text-xl transition-all delay-200"><a href="/">Logout</a></p>
 </ButtonGroup>   
 </ul>
 </nav>
@@ -16,10 +17,11 @@
 <style>
     .navbar{
         display: flex;
+        width:100%;
         height: 55px;
         flex-direction: row;
         justify-content: space-between;
-        background: linear-gradient(to right,#fdbbf2,#dfc49d);
+        background: linear-gradient(to right,#f087ba,#dfc49d);
         border-bottom: 5px solid whitesmoke;
     }
     .navbar >h1{
@@ -28,6 +30,7 @@
         color: black;
         margin: 6px;
     }
+
     ul{
         display: flex;
         list-style: none;

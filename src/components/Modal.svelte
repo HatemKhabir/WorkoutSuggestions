@@ -30,21 +30,25 @@
 
 <style>
        .container {
-        display: flex;
-        flex-direction: column;
+display:flex;
+flex-direction: column;
     }
        .slot-container{
-        margin: 10px;
+		
+		display: flex;
+    flex-direction: column;
+    margin: 10px;
     }
     .button-container {
         display: flex;
         justify-content: space-between;
     }
 	dialog {
-        left: 35%;
-        top: 35%;
-		max-width: 32em;
-		border-radius: 0.2em;
+        left: 25%;
+        top: 25%;
+		max-width: 90em;
+		height:50%;
+		border-radius: 2em;
 		border: none;
 		padding: 0;
 	}

@@ -10,7 +10,10 @@ const config = {
 		adapter: adapter()
 	},
 
-	preprocess: [vitePreprocess({})]
+	preprocess: [vitePreprocess({scss: {
+		includePaths: ['src'],
+		renderSync: true,
+	},})]
 };
 
 export default config;
