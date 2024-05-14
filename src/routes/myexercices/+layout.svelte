@@ -3,11 +3,10 @@
 
 
 </script>
-<div class="container">
 
     <Navbar/>
     <slot/>
-</div>
+
     
 <style>
 

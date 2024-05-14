@@ -2,7 +2,7 @@
     import { Button } from 'flowbite-svelte';
     import Modal from '../components/Modal.svelte';
 	import ExerciseTemplate from '../components/ExerciseTemplate.svelte';
-  import {myExercises} from '../store/stores.js'
+  import {myExercises,addExercise} from '../store/stores.js'
     const bodyParts = [
       'Pectorals Exercises',
       'Upper Back Exercises',

@@ -1,9 +1,26 @@
 <script>
+		import { onMount } from "svelte";
+		import { browser } from '$app/environment';
+
     let username = '';
     let password = '';
     let confirmPass = '';
     let error = false;
     let register = false;
+
+    let isAuthenticated = false;
+
+    onMount(async () => {
+        const response = await fetch('/api/check-session');
+        const data = await response.json();
+        isAuthenticated = data.authenticated;
+        console.log('Authenticated:', isAuthenticated);
+		if (isAuthenticated) {
+            window.location.href = '/dashboard'; // Example redirection
+        } else {
+            console.log('No authentication token found.');
+        }
+	});
 
     async function handleAuth() {
         if (!username || !password || (register && !confirmPass)) {
@@ -16,25 +33,25 @@
         formData.append('username', username);
         formData.append('password', password);
 
-        const response = await fetch(`api/${register ? "signup" : "login"}`, {
+        const response = await fetch(`/api/${register ? "signup" : "login"}`, {
             method: 'POST',
             body: formData
         });
 
         if (response.ok) {
-			console.log(response)
-            // Redirect the user to the home page after successful login/signup
-		// 	if (register)
-        //     window.location.href = '/';
-		// else window.location.href = '/dashboard';
+            // Redirect the user to the home page or dashboard after successful login/signup
+            if (register) {
+                window.location.href = '/';
+            } else {
+                window.location.href = '/dashboard';
+            }
         } else {
             // Show error message if login/signup fails
             error = true;
-			console.log(response)
         }
     }
 
-    async function handleRegister() {
+    function handleRegister() {
         register = !register;
     }
 </script>

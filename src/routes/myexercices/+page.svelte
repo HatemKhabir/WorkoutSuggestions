@@ -1,6 +1,22 @@
 <script>
 	import { Button } from 'flowbite-svelte';
-	import { myExercises, removeExercise } from '../../store/stores.js';
+	import { fetchExercises, myExercises, removeExercise } from '../../store/stores.js';
+	import { onMount } from 'svelte';
+let isAuthenticated=false
+
+onMount(async()=>{
+	const response = await fetch('/api/check-session');
+        const data = await response.json();
+        isAuthenticated = data.authenticated;
+        console.log('Authenticated:', isAuthenticated);
+		if (!isAuthenticated) {
+            window.location.href='/'
+            console.log('No authentication token found.');
+		}
+		fetchExercises();
+        })
+	 
+	
 </script>
 
 	<div class="slide-container">
@@ -9,10 +25,10 @@
 			<div class="clash-card">
 				<div class="content">
 				<div class="clash-card__image clash-card__image--barbarian">
-					<img src={exercice.imgSrc} alt={exercice.exerciceName} />
+					<img src={exercice.exercise_image} alt={exercice.exercise_name} />
 				</div>
-				<div class="clash-card__unit-name">{exercice.exerciceName}</div>
-					<button class="btn rounded-lg px-4 py-2 bg-red-600 text-red-100 hover:bg-red-700 duration-300" tabindex="0" on:click={()=>{removeExercise({exerciceName:exercice.exerciceName,imgSrc:exercice.imgSrc})}}>Remove</button>
+				<div class="clash-card__unit-name">{exercice.exercise_name}</div>
+					<button class="btn rounded-lg px-4 py-2 bg-red-600 text-red-100 hover:bg-red-700 duration-300" tabindex="0" on:click={()=>{removeExercise({exerciceId:exercice.exercise_id})}}>Remove</button>
 				</div>
 			</div>
 		</div>
